@@ -1,6 +1,6 @@
 var mongoose = require( 'mongoose' ); 
 
-mongoose.connect('mongodb://127.0.0.1/cmpos', {useNewUrlParser: true}) 
+mongoose.connect('mongodb://127.0.0.1/mypos', {useNewUrlParser: true}) 
 
 mongoose.connection.on('connected', function () {  
   console.log('Mongoose default connection open');
