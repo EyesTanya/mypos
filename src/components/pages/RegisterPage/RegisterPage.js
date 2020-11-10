@@ -7,6 +7,8 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import { Formik } from "formik";
+import axios from "axios";
+
 // import { useDispatch } from "react-redux";
 // import * as registerActions from "./../../../actions/register.action";
 
@@ -33,9 +35,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+const submit = async (account)=>{
+  const result = await axios.post("http://localhost:8081/api/v2/register", account)
+  alert(JSON.stringify(result.data))
+}
+
+
 export default (props) => {
   const classes = useStyles();
   // const dispatch = useDispatch();
+
+
 
   const showForm = ({
     values,
@@ -80,12 +91,10 @@ export default (props) => {
           onChange={handleChange}
           value={values.age}
           name="age"
-          label="Password"
+          label="Age"
           type="number"
           id="age"
-          autoComplete="current-password"
         />
-
         <Button
           type="submit"
           fullWidth
@@ -117,15 +126,16 @@ export default (props) => {
           Register
         </Typography>
         <Formik
-          initialValues={{ username: "", password: "" }}
+          initialValues={{ username: "", password: "", age: 100 }}
           onSubmit={(values, { setSubmitting }) => {
-            props.history.push("/login");
+            //alert(JSON.stringify(values));
             // dispatch(registerActions.register(values, props.history));
+            submit(values);
             setSubmitting(false);
           }}
         >
           {(props) => showForm(props)}
-        </Formik>
+        </Formik> 
       </CardContent>
     </Card>
   );
