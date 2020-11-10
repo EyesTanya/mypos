@@ -7,10 +7,9 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import { Formik } from "formik";
-import axios from "axios";
 
-// import { useDispatch } from "react-redux";
-// import * as registerActions from "./../../../actions/register.action";
+import { useDispatch, useSelector } from "react-redux";
+import * as registerActions from "./../../../actions/register.action";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,18 +34,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-const submit = async (account)=>{
-  const result = await axios.post("http://localhost:8081/api/v2/register", account)
-  alert(JSON.stringify(result.data))
-}
-
-
 export default (props) => {
   const classes = useStyles();
-  // const dispatch = useDispatch();
-
-
+  const dispatch = useDispatch();
+  // const registerReducer = useSelector(state => state.registerReducer)
+  const registerReducer = useSelector(({ registerReducer }) => registerReducer);
 
   const showForm = ({
     values,
@@ -101,7 +93,7 @@ export default (props) => {
           variant="contained"
           color="primary"
           className={classes.submit}
-          disabled={isSubmitting}
+          disabled={registerReducer.isFetching}
         >
           Create
         </Button>
@@ -128,14 +120,16 @@ export default (props) => {
         <Formik
           initialValues={{ username: "", password: "", age: 100 }}
           onSubmit={(values, { setSubmitting }) => {
-            //alert(JSON.stringify(values));
-            // dispatch(registerActions.register(values, props.history));
-            submit(values);
-            setSubmitting(false);
+            dispatch(registerActions.register(values));
           }}
         >
           {(props) => showForm(props)}
-        </Formik> 
+        </Formik>
+
+        <span>
+          #Debug:{" "}
+          {registerReducer.result && JSON.stringify(registerReducer.result)}
+        </span>
       </CardContent>
     </Card>
   );
