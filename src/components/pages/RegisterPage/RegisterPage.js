@@ -106,7 +106,7 @@ export default (props) => {
           Register
         </Typography>
         <Formik
-          initialValues={{ username: "", password: "" }}
+          initialValues={{ username: "", password: ""}}
           onSubmit={(values, { setSubmitting }) => {
             dispatch(registerActions.register(values));
           }}
@@ -114,7 +114,7 @@ export default (props) => {
           {(props) => showForm(props)}
         </Formik>
 
-        <span>
+        <span style={{ fontSize: 10 }}>
           #Debug:{" "}
           {registerReducer.result && JSON.stringify(registerReducer.result)}
         </span>
