@@ -9,10 +9,14 @@ import {
 import Header from "./components/layouts/Header";
 import Menu from "./components/layouts/Menu";
 
-import LoginPage from "./components/pages/LoginPage";
-import RegisterPage from "./components/pages/RegisterPage";
-import StockPage from "./components/pages/StockPage";
-
+import LoginPage from "./components/pages/LoginPage/LoginPage";
+import RegisterPage from "./components/pages/RegisterPage/RegisterPage";
+import ShopPage from "./components/pages/ShopPage/ShopPage";
+import StockPage from "./components/pages/StockPage/StockPage";
+import StockCreatePage from "./components/pages/StockCreatePage/StockCreatePage";
+import StockEditPage from "./components/pages/StockEditPage/StockEditPage";
+import ReportPage from "./components/pages/ReportPage/ReportPage";
+import TransactionPage from "./components/pages/TransactionPage/TransactionPage";
 // ----
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -61,7 +65,8 @@ export default function App() {
             <Container className={classes.content} maxWidth={false}>
               <Route path="/login" component={LoginPage} />
               <Route path="/register" component={RegisterPage} />
-              <Route path="/stock" component={StockPage} />
+              <Route path="/stock"exact={true} component={StockPage} />
+              <Route path="/stock/create" component={StockCreatePage} />
               <Route
                 exact={true}
                 path="/"

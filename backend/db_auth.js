@@ -26,7 +26,7 @@ security:
 mongoose.set('useCreateIndex', true);
 mongoose.set('useFindAndModify', false);
 mongoose.connect(`mongodb://admin:12345678@127.0.0.1:27017/mypos?authSource=admin`, {useNewUrlParser: true});
-//mongoose.connect('mongodb://127.0.0.1/cmpos', {useNewUrlParser: true}) 
+//mongoose.connect('mongodb://127.0.0.1/mypos', {useNewUrlParser: true}) 
 
 mongoose.connection.on('connected', function () {  
   console.log('Mongoose default connection open');

@@ -1,17 +1,103 @@
-  
 ### Get Product 
 GET http://localhost:8081/api/v2/product HTTP/1.1
 
 
-### Get Product (string query) 
-GET http://localhost:8081/api/v2/product?token1=t1&token2=t2&token3=t3 HTTP/1.1
+### Get Product with Token
+GET http://localhost:8081/api/v2/product HTTP/1.1
+x-access-token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmYWI0ZWM2NWY1ZGVlMmQzYzA2MWUzNSIsImxldmVsIjoibm9ybWFsIiwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTYwNTA3MzkwOSwiZXhwIjoxNjA3NjY1OTA5LCJhdWQiOiJodHRwOi8vY29kZW1vYmlsZXMuY29tIiwiaXNzIjoiQ29kZU1vYmlsZXMgTHRkIiwic3ViIjoiY2hhaXlhc2l0LnRAZ21haWwuY29tIn0.Fez8bZE71ctmeHrg1-85y0_g7Rmo7JHvxZ5VDaoJfsZADKdb8TcCTmubT7NA-fgX0CoozeRJcWTC0zUWr4hbXo7CE7aR84LlmlH2QbtcYUt3exuANTW2J3hqM_KBgI3hduvE3JPUdhmoI3yr6hlz-pw3wR3-LHuVvRf4hiRvfnY
+
+### Get Product with keyword
+GET http://localhost:8081/api/v2/product?keyword=Ar HTTP/1.1
+
+
+### Get Product by ID 
+GET http://localhost:8081/api/v2/product/id/17 HTTP/1.1
+
+
+### Delete Product by ID 
+DELETE http://localhost:8081/api/v2/product/id/44 HTTP/1.1
+
+
 
 
 ### Create 
 POST http://localhost:8081/api/v2/product HTTP/1.1
-Content-Type: application/json
+eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmYWI0ZWM2NWY1ZGVlMmQzYzA2MWUzNSIsImxldmVsIjoibm9ybWFsIiwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTYwNTA3MzkwOSwiZXhwIjoxNjA3NjY1OTA5LCJhdWQiOiJodHRwOi8vY29kZW1vYmlsZXMuY29tIiwiaXNzIjoiQ29kZU1vYmlsZXMgTHRkIiwic3ViIjoiY2hhaXlhc2l0LnRAZ21haWwuY29tIn0.Fez8bZE71ctmeHrg1-85y0_g7Rmo7JHvxZ5VDaoJfsZADKdb8TcCTmubT7NA-fgX0CoozeRJcWTC0zUWr4hbXo7CE7aR84LlmlH2QbtcYUt3exuANTW2J3hqM_KBgI3hduvE3JPUdhmoI3yr6hlz-pw3wR3-LHuVvRf4hiRvfnY
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
-{
-    "username": "admin",
-    "password" : "1234"
-}
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="name";
+
+Angular 
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="stock";
+
+300
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="price";
+
+180
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="image"; filename="test.jpg"
+Content-Type: image/png
+
+< ./test.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+
+### Edit 
+PUT http://localhost:8081/api/v2/product HTTP/1.1
+eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmYWI0ZWM2NWY1ZGVlMmQzYzA2MWUzNSIsImxldmVsIjoibm9ybWFsIiwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTYwNTA3MzkwOSwiZXhwIjoxNjA3NjY1OTA5LCJhdWQiOiJodHRwOi8vY29kZW1vYmlsZXMuY29tIiwiaXNzIjoiQ29kZU1vYmlsZXMgTHRkIiwic3ViIjoiY2hhaXlhc2l0LnRAZ21haWwuY29tIn0.Fez8bZE71ctmeHrg1-85y0_g7Rmo7JHvxZ5VDaoJfsZADKdb8TcCTmubT7NA-fgX0CoozeRJcWTC0zUWr4hbXo7CE7aR84LlmlH2QbtcYUt3exuANTW2J3hqM_KBgI3hduvE3JPUdhmoI3yr6hlz-pw3wR3-LHuVvRf4hiRvfnY
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="id";
+
+44
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="name";
+
+Arduino board (Edit)
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="stock";
+
+101
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="price";
+
+200
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="image"; filename="test_2nd.jpg"
+Content-Type: image/png
+
+< ./test_2nd.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+
+
+---------------------------------------------
+### Heroku
+
+### Create 
+POST https://cmgostock.herokuapp.com/api/v2/product HTTP/1.1
+eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmYWI0ZWM2NWY1ZGVlMmQzYzA2MWUzNSIsImxldmVsIjoibm9ybWFsIiwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTYwNTA3MzkwOSwiZXhwIjoxNjA3NjY1OTA5LCJhdWQiOiJodHRwOi8vY29kZW1vYmlsZXMuY29tIiwiaXNzIjoiQ29kZU1vYmlsZXMgTHRkIiwic3ViIjoiY2hhaXlhc2l0LnRAZ21haWwuY29tIn0.Fez8bZE71ctmeHrg1-85y0_g7Rmo7JHvxZ5VDaoJfsZADKdb8TcCTmubT7NA-fgX0CoozeRJcWTC0zUWr4hbXo7CE7aR84LlmlH2QbtcYUt3exuANTW2J3hqM_KBgI3hduvE3JPUdhmoI3yr6hlz-pw3wR3-LHuVvRf4hiRvfnY
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="name";
+
+Angular2 
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="stock";
+
+300
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="price";
+
+180
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="image"; filename="test.jpg"
+Content-Type: image/png
+
+< ./test.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW--

@@ -20,7 +20,7 @@ export const setRegisterStateToFailed = (payload) => ({
   payload,
 });
 
-export const register = (account) => {
+export const register = (account, history) => {
   return async (dispatch) => {
     try {
       dispatch(setRegisterStateToFetch());
@@ -28,9 +28,16 @@ export const register = (account) => {
         "http://localhost:8081/api/v2/register",
         account
       );
-      dispatch(setRegisterStateToSuccess(result.data));
+
+      debugger;
+      if (result.data.result == "ok") {
+        dispatch(setRegisterStateToSuccess("Register successfully"));
+        history.push("/login");
+      } else {
+        dispatch(setRegisterStateToFailed("Invalid username or password"));
+      }
     } catch (e) {
-      dispatch(setRegisterStateToFailed({ error: JSON.stringify(e) }));
+      dispatch(setRegisterStateToFailed("Internal error"));
     }
   };
 };

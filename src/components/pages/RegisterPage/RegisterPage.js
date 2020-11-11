@@ -7,6 +7,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import { Formik } from "formik";
+import Alert from "@material-ui/lab/Alert";
 
 import { useDispatch, useSelector } from "react-redux";
 import * as registerActions from "./../../../actions/register.action";
@@ -106,18 +107,19 @@ export default (props) => {
           Register
         </Typography>
         <Formik
-          initialValues={{ username: "", password: ""}}
+          initialValues={{ username: "", password: "" }}
           onSubmit={(values, { setSubmitting }) => {
-            dispatch(registerActions.register(values));
+            dispatch(registerActions.register(values, props.history));
           }}
         >
           {(props) => showForm(props)}
         </Formik>
-
-        <span style={{ fontSize: 10 }}>
-          #Debug:{" "}
-          {registerReducer.result && JSON.stringify(registerReducer.result)}
-        </span>
+        <br />
+        {registerReducer.isError && (
+          <Alert style={{marginTop: 10}} severity="error" >
+            {registerReducer.result}
+          </Alert>
+        )}
       </CardContent>
     </Card>
   );
