@@ -163,7 +163,7 @@ export default (props) => {
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={1} >
+      <Grid container spacing={1}>
         {/* Left section */}
         <Grid item xs={8}>
           <Paper
@@ -172,7 +172,6 @@ export default (props) => {
               paddingTop: 24,
               paddingBottom: 24,
               backgroundColor: "#e0f5fd",
-              
             }}
           >
             {shopReducer.mIsPaymentMade ? renderPayment() : renderProductRows()}
@@ -184,7 +183,6 @@ export default (props) => {
           <div
             style={{
               maxWidth: "100%",
-              
             }}
           >
             <Paper style={{ paddingTop: 16, marginTop: 8 }} elevation={1}>
