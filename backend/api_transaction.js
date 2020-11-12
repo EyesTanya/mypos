@@ -25,6 +25,15 @@ router.get("/t", async (req, res) => {
         as: "staff",
       },
     },
+    {
+      $unwind: "$staff"
+    },
+    {
+      $addFields: {staff_id: "$staff"}
+    },
+    {
+      $project: {staff: 0}
+    },
   ]);
   res.json(result);
 });
