@@ -14,11 +14,17 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { Typography, Grid } from "@material-ui/core";
-// import StockCard from "./../../fragments/StockCard/StockCard";
+import StockCard from "./../../fragments/StockCard/StockCard";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import NewReleasesIcon from "@material-ui/icons/NewReleases";
 import AssignmentReturnIcon from "@material-ui/icons/AssignmentReturn";
 import StarIcon from "@material-ui/icons/Star";
+
+import Slide from "@material-ui/core/Slide";
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -181,7 +187,7 @@ export default (props) => {
     <div className={classes.root}>
       {/* Summary Icons */}
 
-      {/* <Grid container style={{ marginBottom: 16 }} spacing={7}>
+      <Grid container style={{ marginBottom: 16 }} spacing={7}>
         <Grid item lg={3} md={6}>
           <StockCard
             icon={AddShoppingCartIcon}
@@ -214,7 +220,7 @@ export default (props) => {
             color="#00c0ef"
           />
         </Grid>
-      </Grid> */}
+      </Grid>
 
       <MaterialTable
         id="root_stock"

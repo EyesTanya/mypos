@@ -2,6 +2,7 @@ import {
     LOGIN_FAILED,
     LOGIN_FETCHING,
     LOGIN_SUCCESS,
+    LOGOUT,
   } from "../constants";
   
   const initialState = {
@@ -18,6 +19,8 @@ import {
         return { ...state, result: payload, isFetching: false, isError: false };
       case LOGIN_FAILED:
         return { ...state, result: payload, isFetching: false, isError: true };
+        case LOGOUT:
+        return { ...state, result: "", isFetching: false, isError: false };
       default:
         return state;
     }
